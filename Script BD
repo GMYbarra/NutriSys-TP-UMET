@@ -1,0 +1,56 @@
+CREATE DATABASE `bd_nutrisys`
+
+--
+-- Table structure for table `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `idCliente` int NOT NULL AUTO_INCREMENT,
+  `DNI` int NOT NULL,
+  `Nombre` varchar(45) NOT NULL,
+  `Apellido` varchar(45) NOT NULL,
+  `Edad` int NOT NULL,
+  `Direccion` varchar(45) NOT NULL,
+  `Telefono` int NOT NULL,
+  `Sexo` varchar(45) NOT NULL,
+  `Condicion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idCliente`,`DNI`)
+);
+
+
+--
+-- Table structure for table `plan_alimentario`
+--
+
+CREATE TABLE `plan_alimentario` (
+  `idPlan` int NOT NULL AUTO_INCREMENT,
+  `NutrientePrincipal` varchar(45) DEFAULT NULL,
+  `CondicionPlan` varchar(45) DEFAULT NULL,
+  `Descripcion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idPlan`)
+);
+
+--
+-- Table structure for table `turno`
+--
+
+CREATE TABLE `turno` (
+  `idCliente` int NOT NULL,
+  `fecha` datetime NOT NULL,
+  PRIMARY KEY (`idCliente`,`fecha`),
+  CONSTRAINT `idCliente` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`)
+);
+
+--
+-- Table structure for table `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `IdUsuario` int NOT NULL AUTO_INCREMENT,
+  `NombreUsuario` varchar(45) NOT NULL,
+  `UserPassword` varchar(45) NOT NULL,
+  `Nombre` varchar(45) NOT NULL,
+  `Apellido` varchar(45) NOT NULL,
+  `Matricula` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IdUsuario`)
+);
